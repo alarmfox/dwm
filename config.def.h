@@ -89,6 +89,11 @@ static const char *mute_vol[] = { "wpctl", "set-mute", "@DEFAULT_SINK@", "toggle
 static const char *brighter[] = { "brightnessctl", "set", "10%+", NULL };
 static const char *dimmer[]   = { "brightnessctl", "set", "10%-", NULL };
 
+/* brightness */
+static const char *fullscreenshot_cl[] = { "flameshot", "full", "--clipboard", NULL };
+static const char *fullscreenshot_save[] = { "flameshot", "-p", "$HOME/Pictures/Screenshots/", NULL };
+static const char *screenshot_gui[]   = { "flameshot", "gui", NULL };
+
 static const Key keys[] = {
 	/* modifier                     key                         function            	argument */
 	{ MODKEY,                       XK_r,                       spawn,              	{.v = launchercmd } },
@@ -106,7 +111,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,                       setlayout,          	{.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                       setlayout,          	{.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                       setlayout,          	{.v = &layouts[2]} },
-	{ MODKEY|ShiftMask,             XK_f,                       togglefakefullscreen,	{0} },
+	{ MODKEY|ShiftMask,             XK_m,                       togglefakefullscreen,	{0} },
 	{ MODKEY,                       XK_space,                   setlayout,          	{0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating,     	{0} },
 	{ MODKEY,                       XK_0,                       view,               	{.ui = ~0 } },
@@ -120,6 +125,9 @@ static const Key keys[] = {
   	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,             		{.v = up_vol } },
   	{ 0,                            XF86XK_MonBrightnessDown,   spawn,              	{.v = dimmer } },
   	{ 0,                            XF86XK_MonBrightnessUp,     spawn,              	{.v = brighter } },
+  	{ 0,                            XK_Print,     	    	    spawn,              	{.v = fullscreenshot_cl } },
+  	{ MODKEY,                       XK_Print,     	            spawn,              	{.v = fullscreenshot_save } },
+  	{ MODKEY|ShiftMask,             XK_Print,     	            spawn,              	{.v = screenshot_gui } },
 	TAGKEYS(                        XK_1,                                           	0)
 	TAGKEYS(                        XK_2,                                           	1)
 	TAGKEYS(                        XK_3,                                           	2)
