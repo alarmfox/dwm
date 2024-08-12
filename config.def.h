@@ -3,7 +3,7 @@
 #define ICONSIZE (bh - 4) /* or adaptively preserve 2 pixels each side */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 1;    /* 0: systray in the right corner, >0: systray on left of status text */
@@ -14,15 +14,19 @@ static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "IosevkaNerdFont:size=14" };
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+
+/* colors */
+static const char normbordercolor[]       = "#3B4252";
+static const char normbgcolor[]           = "#2E3440";
+static const char normfgcolor[]           = "#D8DEE9";
+static const char selbordercolor[]        = "#434C5E";
+static const char selbgcolor[]            = "#434C5E";
+static const char selfgcolor[]            = "#ECEFF4";
+
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	/*               fg           bg           border   */
+	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel] =  { selfgcolor,  selbgcolor,  selbordercolor },
 };
 
 static const char *const autostart[] = {
@@ -30,30 +34,30 @@ static const char *const autostart[] = {
   "nm-applet", NULL,
   "dunst", NULL,
   "flameshot", NULL,
-  "picom", "-c", "~/.config/picon/picom.conf",  NULL,
+  "picom", "--config", "/home/giuseppe/.config/picom/picom.conf", NULL,
   "pipewire", NULL,
   "pipewire-pulse", NULL,
   "wireplumber", NULL,
   "sh", "-c", "feh --randomize --bg-fill ~/.wallpapers/*", NULL,
-  "nm-applet", NULL,
   "nextcloud", "--background", "--isvfsenabled", "1", NULL,
   NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "www", ">_", "</>", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "floorp",  NULL,       NULL,       1 << 1,       0,           -1 },
+	/* class        instance    title       tags mask     isfloating   monitor */
+	{ "firefox",    NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "Alacritty",  NULL,       NULL,       1 << 1,       0,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.75; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -63,6 +67,8 @@ static const Layout layouts[] = {
 	{ "",      tile },    /* first entry is default */
 	{ "",      NULL },    /* no layout function means floating behavior */
 	{ "",      monocle },
+	{ "|M|",    centeredmaster },
+	{ ">M>",    centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -107,10 +113,12 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,                       setmfact,           	{.f = +0.05} },
 	{ MODKEY,                       XK_Return,                  zoom,               	{0} },
 	{ MODKEY,                       XK_Tab,                     view,               	{0} },
-	{ MODKEY,             		XK_w,                       killclient,         	{0} },
+	{ MODKEY,			XK_w,                       killclient,         	{0} },
 	{ MODKEY,                       XK_t,                       setlayout,          	{.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                       setlayout,          	{.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                       setlayout,          	{.v = &layouts[2]} },
+	{ MODKEY,                       XK_u,                       setlayout,          	{.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,                       setlayout,            	{.v = &layouts[4]} },
 	{ MODKEY|ShiftMask,             XK_m,                       togglefakefullscreen,	{0} },
 	{ MODKEY,                       XK_space,                   setlayout,          	{0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating,     	{0} },
@@ -133,7 +141,8 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_3,                                           	2)
 	TAGKEYS(                        XK_4,                                           	3)
 	TAGKEYS(                        XK_5,                                           	4)
-	{ MODKEY|ShiftMask,             XK_q,                       quit,               	{0} },
+	{ MODKEY|ShiftMask,             XK_q,                       quit,               	{1} },
+	{ MODKEY|ShiftMask|ControlMask, XK_q,                       quit,               	{0} },
   	{ MODKEY,                       XK_Escape,                  spawn,              	SHCMD("$HOME/.config/rofi/powermenu.sh")}, // exit dwm
 };
 
