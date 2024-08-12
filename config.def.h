@@ -69,6 +69,7 @@ static const Layout layouts[] = {
 	{ "",      monocle },
 	{ "|M|",    centeredmaster },
 	{ ">M>",    centeredfloatingmaster },
+	{ NULL,     NULL },
 };
 
 /* key definitions */
@@ -105,6 +106,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_r,                       spawn,              	{.v = launchercmd } },
 	{ MODKEY|ShiftMask,             XK_Return,                  spawn,              	{.v = termcmd } },
 	{ MODKEY,                       XK_b,                       spawn,              	SHCMD("xdg-open https://") },
+	{ MODKEY|ShiftMask,             XK_b,                       togglebar,                  {0} },
 	{ MODKEY,                       XK_j,                       focusstack,         	{.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,         	{.i = -1 } },
 	{ MODKEY,                       XK_i,                       incnmaster,         	{.i = +1 } },
@@ -119,6 +121,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_m,                       setlayout,          	{.v = &layouts[2]} },
 	{ MODKEY,                       XK_u,                       setlayout,          	{.v = &layouts[3]} },
 	{ MODKEY,                       XK_o,                       setlayout,            	{.v = &layouts[4]} },
+	{ MODKEY|ControlMask,           XK_c, 		            cyclelayout,    		{.i = +1 } },
+	{ MODKEY|ShiftMask|ControlMask,	XK_c,  		    	    cyclelayout,    		{.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_m,                       togglefakefullscreen,	{0} },
 	{ MODKEY,                       XK_space,                   setlayout,          	{0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating,     	{0} },
