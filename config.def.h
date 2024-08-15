@@ -26,9 +26,10 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
   "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1", NULL,
   "nm-applet", NULL,
+  "slstatus", NULL,
   "dunst", NULL,
   "flameshot", NULL,
-  "picom", "--config", "/home/giuseppe/.config/picom/picom.conf", NULL,
+  "picom", "--animations", NULL,
   "pipewire", NULL,
   "pipewire-pulse", NULL,
   "wireplumber", NULL,
@@ -51,7 +52,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.7; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -81,6 +82,7 @@ static const Layout layouts[] = {
 static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "pcmanfm", NULL };
+static const char *browsercmd[]  = { "firefox", NULL };
 
 /* volume commands */ 
 static const char *up_vol[]   = { "wpctl", "set-volume", "-l", "1.2", "@DEFAULT_AUDIO_SINK@", "10%+", NULL };
@@ -96,12 +98,14 @@ static const char *fullscreenshot_cl[] = { "flameshot", "full", "--clipboard", N
 static const char *fullscreenshot_save[] = { "flameshot", "-p", "$HOME/Pictures/Screenshots/", NULL };
 static const char *screenshot_gui[]   = { "flameshot", "gui", NULL };
 
+
+
 static const Keychord *keychords[] = {
    /* Keys                                     function               argument */
-	&((Keychord){1, {{ MODKEY,XK_r }},                       spawn,              	{.v = launchercmd } }),
-	&((Keychord){1, {{ MODKEY|ShiftMask,XK_Return }},        spawn,              	{.v = termcmd } }),
-	&((Keychord){1, {{ MODKEY,XK_b }},                       spawn,              	SHCMD("xdg-open https://") }),
-	&((Keychord){1, {{ MODKEY,XK_e}},                        spawn,              	{.v = filecmd } }),
+	&((Keychord){1, {{ MODKEY,XK_r }},                       spawn,              	{.v = launchercmd} }),
+	&((Keychord){1, {{ MODKEY|ShiftMask,XK_Return }},        spawn,              	{.v = termcmd} }),
+	&((Keychord){1, {{ MODKEY,XK_b }},                       spawn,              	{.v = browsercmd} }),
+	&((Keychord){1, {{ MODKEY,XK_e}},                        spawn,              	{.v = filecmd} }),
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_b }},             togglebar,             {0} }),
 	&((Keychord){1, {{ MODKEY,XK_j }},                       focusstack,         	{.i = +1 } }),
 	&((Keychord){1, {{ MODKEY,XK_k }},                       focusstack,         	{.i = -1 } }),
