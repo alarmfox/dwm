@@ -25,17 +25,15 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-  "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1", NULL,
+  "/usr/bin/lxpolkit", NULL,
   "nm-applet", NULL,
   "slstatus", NULL,
-  "dunst", NULL,
-  "flameshot", NULL,
   "picom", "--animations", NULL,
   "pipewire", NULL,
   "pipewire-pulse", NULL,
   "wireplumber", NULL,
   "sh", "-c", "feh --randomize --bg-fill ~/.wallpapers/*", NULL,
-  "nextcloud", "--background", "--isvfsenabled", "1", NULL,
+  "nextcloud", "--isvfsenabled", "1", "--background", NULL,
   "brightnessctl", "set", "50%", NULL,
   NULL /* terminate */
 };
@@ -112,20 +110,23 @@ static const Keychord *keychords[] = {
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_b }},             togglebar,             {0} }),
 	&((Keychord){1, {{ MODKEY,XK_j }},                       focusstack,         	{.i = +1 } }),
 	&((Keychord){1, {{ MODKEY,XK_k }},                       focusstack,         	{.i = -1 } }),
-	&((Keychord){1, {{ MODKEY,XK_i }},                       incnmaster,         	{.i = +1 } }),
+	&((Keychord){1, {{ MODKEY,XK_s }},                       incnmaster,         	{.i = +1 } }),
 	&((Keychord){1, {{ MODKEY,XK_d }},                       incnmaster,         	{.i = -1 } }),
 	&((Keychord){1, {{ MODKEY,XK_h }},                       setmfact,           	{.f = -0.05} }),
 	&((Keychord){1, {{ MODKEY,XK_l }},                       setmfact,           	{.f = +0.05} }),
 	&((Keychord){1, {{ MODKEY,XK_Return }},                  zoom,               	{0} }),
 	&((Keychord){1, {{ MODKEY,XK_Tab }},                     view,               	{0} }),
 	&((Keychord){1, {{ MODKEY,XK_w }},                       killclient,         	{0} }),
+
+	/* Layouts */
 	&((Keychord){1, {{ MODKEY,XK_t }},                       setlayout,          	{.v = &layouts[0]} }),
-	&((Keychord){1, {{ MODKEY,XK_f }},                       setlayout,          	{.v = &layouts[1]} }),
-	&((Keychord){1, {{ MODKEY,XK_m }},                       setlayout,          	{.v = &layouts[2]} }),
-	&((Keychord){1, {{ MODKEY,XK_u }},                       setlayout,          	{.v = &layouts[3]} }),
+	&((Keychord){1, {{ MODKEY,XK_y }},                       setlayout,          	{.v = &layouts[1]} }),
+	&((Keychord){1, {{ MODKEY,XK_u }},                       setlayout,          	{.v = &layouts[2]} }),
+	&((Keychord){1, {{ MODKEY,XK_i }},                       setlayout,          	{.v = &layouts[3]} }),
 	&((Keychord){1, {{ MODKEY,XK_o }},                       setlayout,             {.v = &layouts[4]} }),
-	&((Keychord){1, {{ MODKEY|ControlMask,XK_c }}, 		 cyclelayout,    	{.i = +1 } }),
-	&((Keychord){1, {{ MODKEY|ShiftMask|ControlMask,XK_c }}, cyclelayout,    	{.i = -1 } }),
+	&((Keychord){1, {{ MODKEY,XK_p }}, 		 	 cyclelayout,    	{.i = +1 } }),
+	&((Keychord){1, {{ MODKEY|ShiftMask,XK_p }}, 		 cyclelayout,    	{.i = -1 } }),
+	
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_m }},             togglefakefullscreen,	{0} }),
 	&((Keychord){1, {{ MODKEY,XK_space }},                   setlayout,          	{0} }),
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_space }},         togglefloating,     	{0} }),
@@ -135,6 +136,8 @@ static const Keychord *keychords[] = {
 	&((Keychord){1, {{ MODKEY,XK_period }},                  focusmon,           	{.i = +1 } }),
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_comma }},         tagmon,             	{.i = -1 } }),
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_period }},        tagmon,             	{.i = +1 } }),
+
+	/* Media controls */
   	&((Keychord){1, {{ 0,XF86XK_AudioMute }},                spawn,                 {.v = mute_vol } }),
   	&((Keychord){1, {{ 0,XF86XK_AudioLowerVolume }},         spawn,                 {.v = down_vol } }),
   	&((Keychord){1, {{ 0,XF86XK_AudioRaiseVolume }},         spawn,             	{.v = up_vol } }),
