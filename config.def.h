@@ -11,12 +11,12 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "IosevkaNerdFont:size=14" };
 
 /* colors */
-static const char normbordercolor[]       = "#3B4252";
-static const char normbgcolor[]           = "#2E3440";
-static const char normfgcolor[]           = "#D8DEE9";
-static const char selbordercolor[]        = "#434C5E";
-static const char selbgcolor[]            = "#434C5E";
-static const char selfgcolor[]            = "#ECEFF4";
+static const char normbordercolor[]       = "#191724";
+static const char normbgcolor[]           = "#191724";
+static const char normfgcolor[]           = "#E0DEF4";
+static const char selbordercolor[]        = "#908CAA";
+static const char selbgcolor[]            = "#26233A";
+static const char selfgcolor[]            = "#908CAA";
 
 static const char *colors[][3]      = {
 	/*               fg           bg           border   */
@@ -107,7 +107,7 @@ static const Keychord *keychords[] = {
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_Return }},        spawn,              	{.v = termcmd} }),
 	&((Keychord){1, {{ MODKEY,XK_b }},                       spawn,              	{.v = browsercmd} }),
 	&((Keychord){1, {{ MODKEY,XK_e}},                        spawn,              	{.v = filecmd} }),
-	&((Keychord){1, {{ MODKEY|ShiftMask,XK_b }},             togglebar,             {0} }),
+	&((Keychord){1, {{ MODKEY|ShiftMask,XK_b }},             togglebar,           {0} }),
 	&((Keychord){1, {{ MODKEY,XK_j }},                       focusstack,         	{.i = +1 } }),
 	&((Keychord){1, {{ MODKEY,XK_k }},                       focusstack,         	{.i = -1 } }),
 	&((Keychord){1, {{ MODKEY,XK_s }},                       incnmaster,         	{.i = +1 } }),
@@ -123,14 +123,13 @@ static const Keychord *keychords[] = {
 	&((Keychord){1, {{ MODKEY,XK_y }},                       setlayout,          	{.v = &layouts[1]} }),
 	&((Keychord){1, {{ MODKEY,XK_u }},                       setlayout,          	{.v = &layouts[2]} }),
 	&((Keychord){1, {{ MODKEY,XK_i }},                       setlayout,          	{.v = &layouts[3]} }),
-	&((Keychord){1, {{ MODKEY,XK_o }},                       setlayout,             {.v = &layouts[4]} }),
-	&((Keychord){1, {{ MODKEY,XK_p }}, 		 	 cyclelayout,    	{.i = +1 } }),
-	&((Keychord){1, {{ MODKEY|ShiftMask,XK_p }}, 		 cyclelayout,    	{.i = -1 } }),
-	
-	&((Keychord){1, {{ MODKEY|ShiftMask,XK_m }},             togglefakefullscreen,	{0} }),
+	&((Keychord){1, {{ MODKEY,XK_o }},                       setlayout,           {.v = &layouts[4]} }),
+	&((Keychord){1, {{ MODKEY,XK_p }}, 		 	                 cyclelayout,    	    {.i = +1 } }),
+	&((Keychord){1, {{ MODKEY|ShiftMask,XK_p }}, 		         cyclelayout,    	    {.i = -1 } }),
+	&((Keychord){1, {{ MODKEY|ShiftMask,XK_m }},             togglefakefullscreen,{0} }),
 	&((Keychord){1, {{ MODKEY,XK_space }},                   setlayout,          	{0} }),
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_space }},         togglefloating,     	{0} }),
-	&((Keychord){1, {{ MODKEY,XK_0 }},                       view,                  {.ui = ~0 } }),
+	&((Keychord){1, {{ MODKEY,XK_0 }},                       view,                {.ui = ~0 } }),
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_0 }},             tag,                	{.ui = ~0 } }),
 	&((Keychord){1, {{ MODKEY,XK_comma }},                   focusmon,           	{.i = -1 } }),
 	&((Keychord){1, {{ MODKEY,XK_period }},                  focusmon,           	{.i = +1 } }),
@@ -138,22 +137,22 @@ static const Keychord *keychords[] = {
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_period }},        tagmon,             	{.i = +1 } }),
 
 	/* Media controls */
-  	&((Keychord){1, {{ 0,XF86XK_AudioMute }},                spawn,                 {.v = mute_vol } }),
-  	&((Keychord){1, {{ 0,XF86XK_AudioLowerVolume }},         spawn,                 {.v = down_vol } }),
-  	&((Keychord){1, {{ 0,XF86XK_AudioRaiseVolume }},         spawn,             	{.v = up_vol } }),
-  	&((Keychord){1, {{ 0,XF86XK_MonBrightnessDown }},        spawn,                 {.v = dimmer } }),
-  	&((Keychord){1, {{ 0,XF86XK_MonBrightnessUp }},          spawn,                 {.v = brighter } }),
-  	&((Keychord){1, {{ 0,XK_Print }},     	    	         spawn,              	{.v = fullscreenshot_cl } }),
-  	&((Keychord){1, {{ MODKEY,XK_Print }},     	         spawn,                 {.v = fullscreenshot_save } }),
-  	&((Keychord){1, {{ MODKEY|ShiftMask,XK_Print }},     	 spawn,                 {.v = screenshot_gui } }),
-	TAGKEYS(XK_1,                                           	          	0)
-	TAGKEYS(XK_2,                                           	          	1)
-	TAGKEYS(XK_3,                                           	          	2)
-	TAGKEYS(XK_4,                                           	          	3)
-	TAGKEYS(XK_5,                                           	          	4)
-	&((Keychord){1, {{ MODKEY|ShiftMask,XK_q }},             quit,               	{1} }),
-	&((Keychord){1, {{ MODKEY|ShiftMask|ControlMask,XK_q }}, quit,               	{0} }),
-  	&((Keychord){1, {{ MODKEY,XK_Escape }},                  spawn,                 SHCMD("$HOME/.config/rofi/powermenu.sh")}), // exit dwm
+  &((Keychord){1, {{ 0,XF86XK_AudioMute }},                spawn,                 {.v = mute_vol } }),
+  &((Keychord){1, {{ 0,XF86XK_AudioLowerVolume }},         spawn,                 {.v = down_vol } }),
+  &((Keychord){1, {{ 0,XF86XK_AudioRaiseVolume }},         spawn,             	  {.v = up_vol } }),
+  &((Keychord){1, {{ 0,XF86XK_MonBrightnessDown }},        spawn,                 {.v = dimmer } }),
+  &((Keychord){1, {{ 0,XF86XK_MonBrightnessUp }},          spawn,                 {.v = brighter } }),
+  &((Keychord){1, {{ 0,XK_Print }},     	    	           spawn,              	  {.v = fullscreenshot_cl } }),
+  &((Keychord){1, {{ MODKEY,XK_Print }},     	             spawn,                 {.v = fullscreenshot_save } }),
+  &((Keychord){1, {{ MODKEY|ShiftMask,XK_Print }},     	   spawn,                 {.v = screenshot_gui } }),
+	TAGKEYS(XK_1,                                           	          	          0)
+	TAGKEYS(XK_2,                                           	          	          1)
+	TAGKEYS(XK_3,                                           	          	          2)
+	TAGKEYS(XK_4,                                           	          	          3)
+	TAGKEYS(XK_5,                                           	          	          4)
+	&((Keychord){1, {{ MODKEY|ShiftMask,XK_q }},             quit,               	  {1} }),
+	&((Keychord){1, {{ MODKEY|ShiftMask|ControlMask,XK_q }}, quit,               	  {0} }),
+  &((Keychord){1, {{ MODKEY,XK_Escape }},                  spawn,                 SHCMD("$HOME/.config/rofi/powermenu.sh")}), // exit dwm
 };
 
 /* button definitions */
