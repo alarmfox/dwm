@@ -82,7 +82,7 @@ static const Layout layouts[] = {
 /* programs */
 static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *filecmd[]  = { "pcmanfm", NULL };
+static const char *filecmd[]  = { "pcmanfm-qt", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 
 /* volume commands */ 

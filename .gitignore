@@ -1,4 +1,5 @@
 config.h
+.cache
 *.o
 dwm
 *.rej *.orig
