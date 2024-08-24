@@ -51,11 +51,16 @@ const char *spcmd2[] = {"alacritty", "-t", "spnnn",
   "--config-file", 
   "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", 
   "-e", "nnn", NULL };
+const char *spcmd3[] = {"alacritty", "-t", "sppy", 
+  "--config-file", 
+  "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", 
+  "-e", "python", NULL };
 
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",  spcmd1},
 	{"spnnn",   spcmd2},
+	{"sppy",   spcmd3},
 };
 
 /* tagging */
@@ -72,6 +77,7 @@ static const Rule rules[] = {
 	{ NULL,         NULL,       "Event Tester",  	0,        0,            0,            1,          -1 }, /* xev */
 	{ NULL,		      NULL,       "spterm",		  SPTAG(0),		  1,            1,            0,          -1 },
 	{ NULL,		      NULL,		    "spnnn",      SPTAG(1),		  1,            1,            0,          -1 },
+	{ NULL,		      NULL,		    "sppy",       SPTAG(2),		  1,            1,            0,          -1 },
 };
 
 /* layout(s) */
@@ -143,6 +149,7 @@ static const Keychord *keychords[] = {
   /* scratchpads */
 	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_1}},            togglescratch,       {.ui = 0} }),
 	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_2}},            togglescratch,       {.ui = 1} }),
+	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_3}},            togglescratch,       {.ui = 2} }),
 
 	/* Layouts */
 	&((Keychord){1, {{ MODKEY,XK_t }},                       setlayout,          	{.v = &layouts[0]} }),
