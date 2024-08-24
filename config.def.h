@@ -78,6 +78,7 @@ static const Rule rules[] = {
 	{ NULL,		      NULL,       "spterm",		  SPTAG(0),		  1,            1,            0,          -1 },
 	{ NULL,		      NULL,		    "spnnn",      SPTAG(1),		  1,            1,            0,          -1 },
 	{ NULL,		      NULL,		    "sppy",       SPTAG(2),		  1,            1,            0,          -1 },
+	{ "Nextcloud",	NULL,       NULL,         0,            1,            0,            0,          -1 },
 };
 
 /* layout(s) */
