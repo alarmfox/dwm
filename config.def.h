@@ -44,12 +44,18 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"alacritty", "-t", "spterm", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", NULL };
-const char *spcmd2[] = {"alacritty", "-t", "spnnn", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", "-e", "nnn", NULL };
+const char *spcmd1[] = {"alacritty", "-t", "spterm",
+  "--config-file", 
+  "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", NULL };
+const char *spcmd2[] = {"alacritty", "-t", "spnnn", 
+  "--config-file", 
+  "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", 
+  "-e", "nnn", NULL };
+
 static Sp scratchpads[] = {
 	/* name          cmd  */
-	{"spterm",      spcmd1},
-	{"spnnn",    spcmd2},
+	{"spterm",  spcmd1},
+	{"spnnn",   spcmd2},
 };
 
 /* tagging */
