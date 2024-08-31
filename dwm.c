@@ -94,16 +94,10 @@ enum
   CurMove,
   CurLast
 }; /* cursor */
-enum { 
-  SchemeNorm, 
-  SchemeSel, 
-  SchemeTag, 
-  SchemeTag1, 
-  SchemeTag2, 
-  SchemeTag3, 
-  SchemeTag4, 
-  SchemeTag5,
-  SchemeLayout 
+enum
+{
+  SchemeNorm,
+  SchemeSel
 }; /* color schemes */
 enum
 {

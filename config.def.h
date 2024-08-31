@@ -18,22 +18,22 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const unsigned int systrayiconsize = 16; /* systray icon size in px */
 
-/* colors */ 
-#include "colors/tokyo.h"
+/* colors */
+static const char normbordercolor[]       = "#191724";
+static const char normbgcolor[]           = "#191724";
+static const char normfgcolor[]           = "#E0DEF4";
+static const char selbordercolor[]        = "#908CAA";
+static const char selbgcolor[]            = "#26233A";
+static const char selfgcolor[]            = "#908CAA";
 
 static const char *colors[][3]      = {
-/*                 fg          bg          border   */
-  [SchemeNorm]   = { col_normfg, col_normbg, col_normborder },
-  [SchemeSel]    = { col_selfg,  col_selbg,  col_selborder  },
-  [SchemeTag]    = { col_gray,   col_normbg, col_normbg },
-  [SchemeTag1]   = { col_red,    col_normbg, col_normbg },
-  [SchemeTag2]   = { col_orange, col_normbg, col_normbg },
-  [SchemeTag3]   = { col_yellow, col_normbg, col_normbg },
-  [SchemeTag4]   = { col_green,  col_normbg, col_normbg },
-  [SchemeTag5]   = { col_cyan,   col_normbg, col_normbg },
-  [SchemeLayout] = { col_cyan,   col_normbg, col_normbg }
+	/*               fg           bg           border   */
+	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel] =  { selfgcolor,  selbgcolor,  selbordercolor },
 };
  
+
+
 static const char *const autostart[] = {
   "/usr/bin/lxpolkit", NULL,
   "nm-applet", NULL,
