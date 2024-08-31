@@ -3,4 +3,5 @@ compile_commands.json
 .cache
 *.o
 dwm
-*.rej *.orig
+*.rej 
+*.orig
