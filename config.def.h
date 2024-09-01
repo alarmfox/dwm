@@ -34,6 +34,20 @@ static const char *colors[][3]      = {
   [SchemeLayout] = { col_cyan,   col_normbg, col_normbg }
 };
  
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"alacritty", "-t", "spterm", "--class", "spterm", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", NULL };
+const char *spcmd2[] = {"alacritty", "-t", "spcalc", "--class", "spcalc", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", "-e", "python", NULL };
+const char *spcmd3[] = {"alacritty", "-t", "spfile", "--class", "spfile", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", "-e", "nnn", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",    spcmd1},
+	{"spcalc",    spcmd2},
+	{"spfile",    spcmd3},
+};
+
 static const char *const autostart[] = {
   "/usr/bin/lxpolkit", NULL,
   "nm-applet", NULL,
@@ -63,6 +77,9 @@ static const Rule rules[] = {
 	{ NULL,         NULL,       "Event Tester",  	0,        0,            0,            1,          -1 }, /* xev */
 	{ "Nextcloud",	NULL,       NULL,         0,            1,            0,            0,          -1 },
 	{ "pavucontrol",NULL,       NULL,         0,            1,            0,            0,          -1 },
+	{ NULL,         "spterm",   NULL,         SPTAG(0),     1,            1,            1,          -1 },
+	{ NULL,         "spcalc",   NULL,         SPTAG(1),     1,            1,            0,          -1 },
+	{ NULL,         "spfile",   NULL,         SPTAG(2),     1,            1,            0,          -1 },
 };
 
 /* layout(s) */
@@ -129,6 +146,11 @@ static const Keychord *keychords[] = {
 	&((Keychord){1, {{ MODKEY,XK_Tab }},                      view,               	{0} }),
 	&((Keychord){1, {{ MODKEY,XK_w }},                        killclient,         	{0} }),
 
+  /* scratchpads */
+	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_1}},             togglescratch,      	{ .ui = 0 } }),
+	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_2}},             togglescratch,      	{ .ui = 1 } }),
+	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_3}},             togglescratch,      	{ .ui = 2 } }),
+
 	/* layouts managements */
 	&((Keychord){1, {{ MODKEY,XK_t }},                        setlayout,          	{.v = &layouts[0]} }),
 	&((Keychord){1, {{ MODKEY,XK_y }},                        setlayout,          	{.v = &layouts[1]} }),
@@ -192,7 +214,7 @@ static const Button buttons[] = {
 	 */
 	{ ClkClientWin,         MODKEY,         Button1,        moveorplace,    {.i = 1} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
