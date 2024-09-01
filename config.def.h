@@ -60,6 +60,7 @@ static const char *const autostart[] = {
   "nextcloud", "--isvfsenabled", "1", "--background", NULL,
   "brightnessctl", "set", "50%", NULL,
   "flameshot", NULL,
+  "udiskie", "--smart-tray", NULL,
   NULL /* terminate */
 };
 
