@@ -178,9 +178,9 @@ static const Keychord *keychords[] = {
   &((Keychord){1, {{ 0,XF86XK_MonBrightnessUp }},           spawn,                {.v = brighter } }),
 
   /* screenshot */
-  &((Keychord){2, {{ 0,XK_Print }, {0, XK_f}},              spawn,              	{.v = fullscreenshot_cl } }),
-  &((Keychord){2, {{ 0,XK_Print }, {0, XK_c}},     	        spawn,                {.v = fullscreenshot_save } }),
-  &((Keychord){2, {{ 0,XK_Print }, {0, XK_v}},     	        spawn,                {.v = screenshot_gui } }),
+  &((Keychord){1, {{ 0,XK_Print }},                         spawn,              	{.v = fullscreenshot_cl } }),
+  &((Keychord){1, {{ MODKEY|ShiftMask,XK_Print }},     	    spawn,                {.v = fullscreenshot_save } }),
+  &((Keychord){1, {{ MODKEY,XK_Print }},     	              spawn,                {.v = screenshot_gui } }),
 
   /* tag key */
 	TAGKEYS(XK_1,                                           	          	          0)
