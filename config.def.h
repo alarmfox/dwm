@@ -113,6 +113,7 @@ static const Layout layouts[] = {
 
 /* programs */
 static const char *launchercmd[] = { "rofi", "-show", "drun", "-no-config", "-no-lazy-grab", "-modi", "drun", "-theme", "/home/giuseppe/.config/rofi/config.rasi", NULL };
+static const char *emojisel[] = { "rofi", "-show", "emoji", "-no-config", "-no-lazy-grab", "-modi", "emoji", "-theme", "/home/giuseppe/.config/rofi/config.rasi", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "pcmanfm-qt", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
@@ -137,7 +138,9 @@ static const Keychord *keychords[] = {
 	&((Keychord){1, {{ MODKEY|ShiftMask,XK_Return }},         spawn,              	{.v = termcmd} }),
 	&((Keychord){1, {{ MODKEY,XK_b }},                        spawn,              	{.v = browsercmd} }),
 	&((Keychord){1, {{ MODKEY,XK_e}},                         spawn,              	{.v = filecmd} }),
-	&((Keychord){1, {{ MODKEY|ShiftMask,XK_b }},              togglebar,           {0} }),
+	&((Keychord){1, {{ MODKEY,XK_a}},                         spawn,              	{.v = emojisel} }),
+
+	&((Keychord){1, {{ MODKEY|ShiftMask,XK_b }},              togglebar,            {0} }),
 	&((Keychord){1, {{ MODKEY,XK_j }},                        focusstack,         	{.i = +1 } }),
 	&((Keychord){1, {{ MODKEY,XK_k }},                        focusstack,         	{.i = -1 } }),
 	&((Keychord){1, {{ MODKEY,XK_s }},                        incnmaster,         	{.i = +1 } }),
