@@ -40,12 +40,10 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {"alacritty", "-t", "spterm", "--class", "spterm", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", NULL };
 const char *spcmd2[] = {"alacritty", "-t", "spcalc", "--class", "spcalc", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", "-e", "python", NULL };
-const char *spcmd3[] = {"alacritty", "-t", "spfile", "--class", "spfile", "--config-file", "/home/giuseppe/.config/alacritty/alacritty-scratchpad.toml", "-e", "nnn", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",    spcmd1},
 	{"spcalc",    spcmd2},
-	{"spfile",    spcmd3},
 };
 
 static const char *const autostart[] = {
@@ -80,8 +78,8 @@ static const Rule rules[] = {
 	{ "pavucontrol",NULL,       NULL,         0,            1,            0,            0,          -1 },
 	{ NULL,         "spterm",   NULL,         SPTAG(0),     1,            1,            1,          -1 },
 	{ NULL,         "spcalc",   NULL,         SPTAG(1),     1,            1,            0,          -1 },
-	{ NULL,         "spfile",   NULL,         SPTAG(2),     1,            1,            0,          -1 },
   { "Spotify",    NULL,       NULL,         1 << 3,       0,            0,            0,          -1 },
+  { "scrcpy",     NULL,       NULL,         0,            1,            0,            0,          -1 },
 };
 
 /* layout(s) */
@@ -154,7 +152,6 @@ static const Keychord *keychords[] = {
   /* scratchpads */
 	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_1}},             togglescratch,      	{ .ui = 0 } }),
 	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_2}},             togglescratch,      	{ .ui = 1 } }),
-	&((Keychord){2, {{ MODKEY,XK_v }, {0, XK_3}},             togglescratch,      	{ .ui = 2 } }),
 
 	/* layouts managements */
 	&((Keychord){1, {{ MODKEY,XK_t }},                        setlayout,          	{.v = &layouts[0]} }),
