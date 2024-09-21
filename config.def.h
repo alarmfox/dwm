@@ -70,16 +70,17 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class        instance    title       	tags mask     isfloating,   isterminal,   noswallow,  monitor */
-	{ "Alacritty",  NULL,       NULL,       	1 << 0,       0,            1,            0,          -1 },
-	{ "firefox",    NULL,       NULL,       	1 << 1,       0,            0,            0,          -1 },
-	{ NULL,         NULL,       "Event Tester",  	0,        0,            0,            1,          -1 }, /* xev */
-	{ "Nextcloud",	NULL,       NULL,         0,            1,            0,            0,          -1 },
-	{ "pavucontrol",NULL,       NULL,         0,            1,            0,            0,          -1 },
-	{ NULL,         "spterm",   NULL,         SPTAG(0),     1,            1,            1,          -1 },
-	{ NULL,         "spcalc",   NULL,         SPTAG(1),     1,            1,            0,          -1 },
-  { "Spotify",    NULL,       NULL,         1 << 3,       0,            0,            0,          -1 },
-  { "scrcpy",     NULL,       NULL,         0,            1,            0,            0,          -1 },
+	/* class            instance    title       	tags mask     isfloating,   isterminal,   noswallow,  monitor */
+	{ "Alacritty",      NULL,       NULL,       	1 << 0,       0,            1,            0,          -1 },
+	{ "firefox",        NULL,       NULL,       	1 << 1,       0,            0,            0,          -1 },
+	{ NULL,             NULL,       "Event Tester",  	0,        0,            0,            1,          -1 }, /* xev */
+	{ "Nextcloud",	    NULL,       NULL,         0,            1,            0,            0,          -1 },
+	{ "pavucontrol",    NULL,       NULL,         0,            1,            0,            0,          -1 },
+	{ "Blueman-manager",NULL,       NULL,         0,            1,            0,            0,          -1 },
+	{ NULL,             "spterm",   NULL,         SPTAG(0),     1,            1,            1,          -1 },
+	{ NULL,             "spcalc",   NULL,         SPTAG(1),     1,            1,            0,          -1 },
+  { "Spotify",        NULL,       NULL,         1 << 3,       0,            0,            0,          -1 },
+  { "scrcpy",         NULL,       NULL,         0,            1,            0,            0,          -1 },
 };
 
 /* layout(s) */
